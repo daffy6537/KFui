@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <script src="../jspm_packages/system.js"></script>
-  <script src="../jspm.config.js"></script>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../jspm_packages/system.js"></script>
+    <script src="../jspm.config.js"></script>
 </head>
+
 <body>
-  <kf-layout class="layout">
-    <div slot="header">
-      <button class="kf-btn kf-primary kf-md" @click="toggleSidebar()"><i class="fa fa-bars"></i></button>
-      <button class="kf-btn kf-primary kf-md" @click="toggleSidebar('right')"><i class="fa fa-bars"></i></button>
-    </div>
 
-    <div slot="left">
-      <kf-menu class="menu" :menu="menuData"></kf-menu>
-    </div>
+    <kf-modal :show-dialog="isShow">
+        <div slot="kf-title">
+            <h3>标题</h3>
+        </div>
+        <div slot="kf-content">
+            <form class="kf-form" name="theForm" validate>
+                <div class="kf-input">
+                    <input type="text" name="mail" pattern="email" required/>
+                </div>
+                <div class="kf-input">
+                    <input type="text" />
+                </div>
+                <div class="kf-input">
+                    <input type="text" pattern="phone" required/>
+                </div>
+                <input class="kf-btn kf-primary" type="button" @click="console()"></input>
+            </form>
+        </div>
+        <div slot="kf-btns">
+            <input class="kf-btn kf-primary" type="submit"></input>
+            <button class="kf-btn kf-default" @click="isShow = !isShow">取消</button>
+        </div>
+    </kf-modal>
 
-    <div slot="middle" class="content">
-      <kf-tab class="kf-lg kf-primary">
+    <kf-layout class="layout">
+        <div slot="header">
+            <button class="kf-btn kf-primary kf-md" @click="toggleSidebar()"><i class="fa fa-bars"></i></button>
+            <button class="kf-btn kf-primary kf-md" @click="toggleSidebar('right')"><i class="fa fa-bars"></i></button>
+        </div>
+
+        <div slot="left">
+            <kf-menu class="menu" :menu="menuData"></kf-menu>
+        </div>
+
+        <div slot="middle" class="content">
+            <kf-tab class="kf-lg kf-primary">
         <kf-tab-item label="蓝色">
           <div style="height: 200px">蓝色</div>
         </kf-tab-item>
@@ -95,15 +122,23 @@
       <kf-pager class="kf-primary" :total-entries="100" :on-change="onChange"></kf-pager>
       <br>
       <kf-stable class="kf-border kf-sm" :table="stable" :col-keys="colKeys"></kf-stable>
-    </div>
 
-    <div slot="right">RIGHT SIDEBAR</div>
+            <button class="kf-btn kf-primary" @click="showDialog()">{{isShow ? '关闭' : '打开'}}</button>
+            <button class="kf-btn kf-primary" @click="add()">成功</button>
+        <button class="kf-btn kf-primary" @click="nextAdd()">失败</button>
 
-    <div slot="footer">FOOTER</div>
-  </kf-layout>
+            <kf-tip :tip-data="alertTipObj"></kf-tip>
+        </div>
 
-  <script>
-    System.import('./index.js');
-  </script>
+        <div slot="right">RIGHT SIDEBAR</div>
+
+        <div slot="footer">FOOTER</div>
+    </kf-layout>
+
+
+    <script>
+        System.import('./index.js');
+    </script>
 </body>
+
 </html>

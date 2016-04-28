@@ -1,0 +1,46 @@
+@import (reference) '../style/clearfix';
+@import (reference) '../style/color';
+@import (reference) '../style/size';
+:global {
+    .kf-modal {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.6);
+        z-index: 999;
+        text-align: center;
+        &:after{
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 0;
+            background-color: #000;
+            vertical-align: middle;
+        }
+        .kf-modal-dialog {
+            width: 500px;
+            padding: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            border: 5px solid @gray;
+            background-color: #fff;
+            text-align: left;
+            .kf-modal-title {
+                height: 40px;
+                font-size: 16px;
+                line-height: 40px;
+            }
+            .kf-modal-content {
+                margin-bottom: 10px;
+            }
+            .kf-modal-btns {
+                float: right;
+                button {
+                    margin: 5px;
+                }
+            }
+        }
+    }
+}
